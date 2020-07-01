@@ -84,11 +84,11 @@ function SWEP:SecondaryAttack()
 end
 
 function SWEP:SetZoom(state)
-	if (SERVER and IsValid(self.Owner) and self.Owner:IsPlayer()) then
+	if (SERVER and IsValid(self:GetOwner()) and self:GetOwner():IsPlayer()) then
 		if (state) then
-			self.Owner:SetFOV(20, 0.3)
+			self:GetOwner():SetFOV(20, 0.3)
 		else
-			self.Owner:SetFOV(0, 0.2)
+			self:GetOwner():SetFOV(0, 0.2)
 		end
 	end
 end
@@ -104,7 +104,7 @@ function SWEP:PreDrop()
 end
 
 function SWEP:Reload()
-	if (self:Clip1() < self.Primary.ClipSize and self.Owner:GetAmmoCount(self.Primary.Ammo) > 0) then
+	if (self:Clip1() < self.Primary.ClipSize and self:GetOwner():GetAmmoCount(self.Primary.Ammo) > 0) then
 		self:DefaultReload(ACT_VM_RELOAD)
 		self:ResetIronSights()
 	end
